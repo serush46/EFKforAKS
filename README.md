@@ -5,7 +5,7 @@ This document contains the steps to configure EFK for AKS ie. Azure Kubernetes S
 #### Architecure
 ![alt text](https://raw.githubusercontent.com/serush46/EFKforAKS/master/arch.png)
 
-Pre-Requisites
+#### Pre-Requisites
 1. Working Kubernetes cluster on Azure
 2. Elasticsearch Server on same Azure VNet or somewhere else with accessibility 
 3. Packages to be installed:
