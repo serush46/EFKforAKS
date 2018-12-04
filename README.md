@@ -6,6 +6,7 @@ Pre-Requisites
 1. Working Kubernetes cluster on Azure
 2. Elasticsearch Server on same Azure VNet or somewhere else with accessibility 
 3. Packages to be installed:
+
     a. docker
     b. kubectl 
 4. dockerhub or azure container registry or any  image repository
