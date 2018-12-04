@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd-elasticsearch
+  namespace: kube-system
+  labels:
+    name: fluentd-elasticsearch
+spec:
+  selector:
+    matchLabels:
+      name: fluentd-elasticsearch
+  template:
+    metadata:
+      labels:
+        name: fluentd-elasticsearch
+    spec:
+      serviceAccountName: fluentd-service-account
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: fluentd-elasticsearch
+        image: imagename
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: 350Mi
+          requests:
+            cpu: 200m
+            memory: 300Mi
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log/
+        - name: varlibdocker
+          mountPath: /var/lib/docker/
+#        - name: varlogcontainers
+#          mountPath: /var/log/containers
+#          readOnly: true
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log/
+#      - name: varlogcontainers
+#        hostPath:
+#          path: /var/log/containers
+      - name: varlibdocker
+        hostPath:
+          path: /var/lib/docker/
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: fluentd-service-account
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: fluentd-service-account
+subjects:
+- kind: ServiceAccount
+  name: fluentd-service-account
+  namespace: kube-system
+
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: fluentd-service-account
+  namespace: kube-system
+rules:
+  - apiGroups: ["*"]
+    resources:
+      - pods
+      - namespaces
+    verbs:
+      - get
+      - watch
+      - list
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fluentd-service-account
+  namespace: kube-system
+
