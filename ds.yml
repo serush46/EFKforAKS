@@ -21,7 +21,7 @@ spec:
         effect: NoSchedule
       containers:
       - name: fluentd-elasticsearch
-        image: imagename
+        image: efk/fluentd:v1
         imagePullPolicy: Always
         resources:
           limits:
