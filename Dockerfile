@@ -41,7 +41,6 @@ COPY plugins /fluentd/plugins/
 COPY entrypoint.sh /fluentd/entrypoint.sh
 
 # Environment variables
-ENV FLUENT_UID="0"
 ENV FLUENTD_OPT=""
 ENV FLUENTD_CONF="fluent.conf"
 
