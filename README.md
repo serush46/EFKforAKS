@@ -2,6 +2,9 @@
 # Introduction
 This document contains the steps to configure EFK for AKS ie. Azure Kubernetes Service.
 
+#### Architecure
+![alt text](https://raw.githubusercontent.com/serush46/EFKforAKS/master/arch.png)
+
 Pre-Requisites
 1. Working Kubernetes cluster on Azure
 2. Elasticsearch Server on same Azure VNet or somewhere else with accessibility 
@@ -60,4 +63,6 @@ We are about to create a service account, Cluster role and Role binding to provi
 6. Once the pods are live, You can verify the logs in your Elasticsearch server.
     - Create index pattern for syslog as syslog* and provide @timestamp for timefilter
     - Create index pattern for kubernetes logs as logstash* or whatever you like and @timestamp for timefilter
-    - You can view the logs now by using the above create index. 
+    - You can view the logs now by using the above created index. 
+
+![alt text](https://raw.githubusercontent.com/serush46/EFKforAKS/master/image.png)
