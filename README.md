@@ -1,4 +1,5 @@
-# EFK (ELK) for Hosted Azure Kubernetes Service (AKS)
+# EFK (ELK) for Hosted Kubernetes Service like AKS, EKS, GKS
+
 # Introduction
 This document contains the steps to configure EFK for AKS ie. Azure Kubernetes Service.
 
