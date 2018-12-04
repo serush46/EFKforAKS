@@ -25,10 +25,10 @@ spec:
         imagePullPolicy: Always
         resources:
           limits:
-            memory: 350Mi
+            memory: 300Mi
           requests:
             cpu: 200m
-            memory: 300Mi
+            memory: 200Mi
         volumeMounts:
         - name: varlog
           mountPath: /var/log/
